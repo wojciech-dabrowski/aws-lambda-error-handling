@@ -8,10 +8,8 @@ namespace AwsLambdaErrorHandling.Invocations
     {
         public static async Task<T> Deserialize<T>(this Stream stream)
         {
-            using (var streamReader = new StreamReader(stream))
-            {
-                return JsonConvert.DeserializeObject<T>(await streamReader.ReadToEndAsync());
-            }
+            using var streamReader = new StreamReader(stream);
+            return JsonConvert.DeserializeObject<T>(await streamReader.ReadToEndAsync());
         }
     }
 }

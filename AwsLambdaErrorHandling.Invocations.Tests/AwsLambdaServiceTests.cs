@@ -24,7 +24,7 @@ namespace AwsLambdaErrorHandling.Invocations.Tests
                 response.Should().NotBeNull();
                 response.StatusCode.Should().Be(expectedStatusCode);
                 response.ExecutedVersion.Should().Be(expectedExecutedVersion);
-                response.FunctionError.Should().NotBeNullOrWhiteSpace();
+                response.FunctionError.Should().BeNullOrWhiteSpace();
             }
         }
 

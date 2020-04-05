@@ -6,5 +6,10 @@ namespace AwsLambdaErrorHandling.Invocations
     public class SuccessLambdaResponseModel
     {
         public string Response { get; }
+
+        public SuccessLambdaResponseModel(string response)
+        {
+            Response = response;
+        }
     }
 }
