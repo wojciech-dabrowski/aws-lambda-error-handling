@@ -24,8 +24,23 @@ namespace AwsLambdaErrorHandling.Invocations.Tests
                 response.Should().NotBeNull();
                 response.StatusCode.Should().Be(expectedStatusCode);
                 response.ExecutedVersion.Should().Be(expectedExecutedVersion);
-                response.FunctionError.Should().BeNullOrEmpty();
+                response.FunctionError.Should().NotBeNullOrWhiteSpace();
             }
+        }
+
+        [Fact]
+        public async Task InvokeSuccessLambdaAsync_WithCorrectlyConfiguredLocalAwsAccount_ShouldReturnCorrectResponseModel()
+        {
+            // Given
+            var runner = new AwsLambdaRunner();
+
+            // When
+            var response = await runner.InvokeSuccessLambdaAsync();
+            var responseModel = await response.Payload.Deserialize<SuccessLambdaResponseModel>();
+
+            // Then
+            responseModel.Should().NotBeNull();
+            responseModel.Response.Should().NotBeNullOrWhiteSpace();
         }
 
         [Fact]
