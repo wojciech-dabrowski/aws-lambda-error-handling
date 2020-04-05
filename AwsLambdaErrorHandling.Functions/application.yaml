@@ -2,6 +2,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: Stack for present error handling in Lambda functions
 Resources:
   SuccessLambda:
+
     Type: AWS::Serverless::Function
     Properties:
       Handler: AwsLambdaErrorHandling.Functions::AwsLambdaErrorHandling.Functions.SuccessLambda::Invoke

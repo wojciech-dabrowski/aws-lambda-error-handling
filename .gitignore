@@ -248,3 +248,5 @@ ModelManifest.xml
 
 #AWS Lambda
 **/Properties/launchSettings.json
+/success-response.json
+/fail-response.json
