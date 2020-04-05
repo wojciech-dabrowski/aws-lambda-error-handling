@@ -5,28 +5,12 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: AwsLambdaErrorHandling.Functions::AwsLambdaErrorHandling.Functions.SuccessLambda::Invoke
-      Role: !GetAtt LambdaRole.Arn
-      
+
   FailLambda:
     Type: AWS::Serverless::Function
     Properties:
       Handler: AwsLambdaErrorHandling.Functions::AwsLambdaErrorHandling.Functions.FailLambda::Invoke
-      Role: !GetAtt LambdaRole.Arn
 
-  LambdaRole:
-    Type: AWS::IAM::Role
-    Properties:
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-      AssumeRolePolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Effect: Allow
-            Action:
-              - sts:AssumeRole
-            Principal:
-              Service:
-                - lambda.amazonaws.com
 Globals:
   Function:
     Runtime: dotnetcore2.1

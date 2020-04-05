@@ -1,3 +1,5 @@
+Set-Location -Path AwsLambdaErrorHandling.Functions
+
 dotnet restore
 dotnet publish -c RELEASE
 dotnet lambda deploy-serverless `
@@ -9,3 +11,5 @@ dotnet lambda deploy-serverless `
     --stack-name aws-lambda-error-handling `
     --stack-wait true `
     --profile default
+
+Set-Location -Path ..
