@@ -6,11 +6,11 @@ namespace AwsLambdaErrorHandling.LambdaClient.Exceptions
     {
         private const string ExceptionMessage = "Lambda call failed in runtime.";
 
-        public LambdaRuntimeErrorModel RuntimeError { get; }
-
         public LambdaRuntimeException(LambdaRuntimeErrorModel runtimeError) : base(ExceptionMessage)
         {
             RuntimeError = runtimeError;
         }
+
+        public LambdaRuntimeErrorModel RuntimeError { get; }
     }
 }

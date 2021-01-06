@@ -5,7 +5,7 @@ namespace AwsLambdaErrorHandling.LambdaClient.Json
 {
     public interface IJsonSerializer
     {
-        string Serialize(object objectToSerialize);
+        string Serialize(object? objectToSerialize);
         Task<T> DeserializeAsync<T>(Stream stream);
     }
 }

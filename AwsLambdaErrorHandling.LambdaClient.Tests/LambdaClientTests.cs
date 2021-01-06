@@ -20,8 +20,8 @@ namespace AwsLambdaErrorHandling.LambdaClient.Tests
             // Given
             var expectedResponse = new TestResponseModel
             {
-                TestNumberProperty = 10,
-                TestStringProperty = "TestString"
+                TestNumberProperty = 10
+                , TestStringProperty = "TestString"
             };
 
             var serializerMock = new Mock<IJsonSerializer>();
@@ -65,9 +65,14 @@ namespace AwsLambdaErrorHandling.LambdaClient.Tests
             // Given
             var expectedErrorModel = new LambdaRuntimeErrorModel
             {
-                ErrorType = "ErrorType",
-                ErrorMessage = "ErrorMessage",
-                StackTrace = new[] { "One", "Two", "Three" }
+                ErrorType = "ErrorType"
+                , ErrorMessage = "ErrorMessage"
+                , StackTrace = new[]
+                {
+                    "One"
+                    , "Two"
+                    , "Three"
+                }
             };
 
             var serializerMock = new Mock<IJsonSerializer>();

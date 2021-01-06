@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Amazon.Lambda;
 using Amazon.Lambda.Model;
@@ -22,18 +21,18 @@ namespace AwsLambdaErrorHandling.LambdaClient
         {
             var invokeRequest = new InvokeRequest
             {
-                FunctionName = functionName,
-                Payload = _jsonSerializer.Serialize(request)
+                FunctionName = functionName
+                , Payload = _jsonSerializer.Serialize(request)
             };
 
-            var lambdaResponse = await InvokeLambda(invokeRequest);
+            var lambdaResponse = await InvokeLambda(invokeRequest).ConfigureAwait(false);
 
-            if (String.IsNullOrWhiteSpace(lambdaResponse.FunctionError))
+            if (string.IsNullOrWhiteSpace(lambdaResponse.FunctionError))
             {
-                return await _jsonSerializer.DeserializeAsync<TResponse>(lambdaResponse.Payload);
+                return await _jsonSerializer.DeserializeAsync<TResponse>(lambdaResponse.Payload).ConfigureAwait(false);
             }
 
-            var runtimeError = await _jsonSerializer.DeserializeAsync<LambdaRuntimeErrorModel>(lambdaResponse.Payload);
+            var runtimeError = await _jsonSerializer.DeserializeAsync<LambdaRuntimeErrorModel>(lambdaResponse.Payload).ConfigureAwait(false);
             throw new LambdaRuntimeException(runtimeError);
         }
 
@@ -41,7 +40,7 @@ namespace AwsLambdaErrorHandling.LambdaClient
         {
             try
             {
-                return await _amazonLambda.InvokeAsync(invokeRequest);
+                return await _amazonLambda.InvokeAsync(invokeRequest).ConfigureAwait(false);
             }
             catch (AmazonLambdaException e)
             {

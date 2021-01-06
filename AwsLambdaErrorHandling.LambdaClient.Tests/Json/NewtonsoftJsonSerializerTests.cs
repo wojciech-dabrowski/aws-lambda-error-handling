@@ -25,7 +25,10 @@ namespace AwsLambdaErrorHandling.LambdaClient.Tests.Json
             var serializer = new NewtonsoftJsonSerializer();
             const string expectedErrorType = "Exception";
             const string expectedErrorMessage = "Exception thrown during AWS Lambda function runtime.";
-            var expectedStackTrace = new[] { "at AwsLambdaErrorHandling.Functions.FailLambda.Invoke() in C:\\<code-path>\\AwsLambdaErrorHandling.Functions\\FailLambda.cs:line 7" };
+            var expectedStackTrace = new[]
+            {
+                "at AwsLambdaErrorHandling.Functions.FailLambda.Invoke() in C:\\<code-path>\\AwsLambdaErrorHandling.Functions\\FailLambda.cs:line 7"
+            };
 
             // When
             var deserializedObject = await serializer.DeserializeAsync<LambdaRuntimeErrorModel>(new MemoryStream(Encoding.UTF8.GetBytes(correctJson)));

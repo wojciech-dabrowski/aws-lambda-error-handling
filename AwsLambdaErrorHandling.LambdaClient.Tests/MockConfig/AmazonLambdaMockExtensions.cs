@@ -15,13 +15,13 @@ namespace AwsLambdaErrorHandling.LambdaClient.Tests.MockConfig
             => amazonLambdaMock.Setup(m => m.InvokeAsync(It.Is<InvokeRequest>(r => r.FunctionName.Equals(functionName)), default))
                                .ThrowsAsync(new TooManyRequestsException("Rate Exceeded."));
 
-        private static void SetupInvokeAsync(Mock<IAmazonLambda> amazonLambdaMock, string functionName, string functionError = null)
+        private static void SetupInvokeAsync(Mock<IAmazonLambda> amazonLambdaMock, string functionName, string? functionError = null)
             => amazonLambdaMock.Setup(m => m.InvokeAsync(It.Is<InvokeRequest>(r => r.FunctionName.Equals(functionName)), default))
                                .ReturnsAsync(
                                     new InvokeResponse
                                     {
-                                        FunctionError = functionError,
-                                        StatusCode = 200
+                                        FunctionError = functionError
+                                        , StatusCode = 200
                                     }
                                 );
     }

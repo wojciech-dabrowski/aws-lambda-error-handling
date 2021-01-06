@@ -11,17 +11,23 @@ namespace AwsLambdaErrorHandling.Invocations
         public async Task<InvokeResponse> InvokeSuccessLambdaAsync()
         {
             const string successLambdaName = "aws-lambda-error-handling-SuccessLambda-<your-unique-key>";
-            var invokeRequest = new InvokeRequest { FunctionName = successLambdaName };
+            var invokeRequest = new InvokeRequest
+            {
+                FunctionName = successLambdaName
+            };
 
-            return await _lambdaClient.InvokeAsync(invokeRequest);
+            return await _lambdaClient.InvokeAsync(invokeRequest).ConfigureAwait(false);
         }
 
         public async Task<InvokeResponse> InvokeFailLambdaAsync()
         {
             const string failLambdaName = "aws-lambda-error-handling-FailLambda-<your-unique-key>";
-            var invokeRequest = new InvokeRequest { FunctionName = failLambdaName };
+            var invokeRequest = new InvokeRequest
+            {
+                FunctionName = failLambdaName
+            };
 
-            return await _lambdaClient.InvokeAsync(invokeRequest);
+            return await _lambdaClient.InvokeAsync(invokeRequest).ConfigureAwait(false);
         }
     }
 }
