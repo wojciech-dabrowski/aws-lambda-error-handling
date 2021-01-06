@@ -14,7 +14,7 @@ Resources:
 
 Globals:
   Function:
-    Runtime: dotnetcore2.1
-    CodeUri: bin/Release/netcoreapp2.1/publish
+    Runtime: dotnetcore3.1
+    CodeUri: bin/Release/netcoreapp3.1/publish
     MemorySize: 512
     Timeout: 10
